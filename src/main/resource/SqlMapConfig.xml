@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	如果将和spring整合后，可以使用整合包中提供的mapper扫描器，此处的mappers不用配置了。
 	 -->
 	<mappers>
-		 <mapper resource="mapper/SmsMemberMapper.xml"/>
+	<!-- 	 <mapper resource="mapper/SmsMemberMapper.xml"/>  -->
+		 <mapper resource="mapper/PeopleMapper.xml"/>
 	</mappers>
 </configuration>
