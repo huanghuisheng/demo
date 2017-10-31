@@ -4,9 +4,9 @@ import gnu.trove.THashMap;
 
 import java.util.Map;
 
-import com.bdcc.waf.exception.SystemException;
-import com.bdcc.waf.service.BaseService;
-import com.bdcc.waf.utils.ClassUtils;
+//import com.bdcc.waf.exception.SystemException;
+//import com.bdcc.waf.service.BaseService;
+//import com.bdcc.waf.utils.ClassUtils;
 
 public class BusinessServiceFactory {
 	private static Map delegateList = new THashMap(100);
@@ -24,48 +24,56 @@ public class BusinessServiceFactory {
 			return svc;
 		}
 	}
-
-	public static Object getService(Class serviceInterface, Class serviceImpl) {
-		if (serviceInterface != null && serviceImpl != null) {
-			Object svc = delegateList.get(serviceImpl);
-			if (svc == null) {
-				svc = getSynchronizedService(serviceInterface, serviceImpl);
-			}
-
-			return svc;
-		} else {
-			return null;
-		}
-	}
+	
+//	public static Object getService(Class serviceInterface, Class serviceImpl) {
+//		if (serviceInterface != null && serviceImpl != null) {
+//			Object svc = delegateList.get(serviceImpl);
+//			if (svc == null) {
+//				svc = getSynchronizedService(serviceInterface, serviceImpl);
+//			}
+//
+//			return svc;
+//		} else {
+//			return null;
+//		}
+//	}
 
 	private static synchronized Object getSynchronizedService(
 			Class serviceInterface) {
 		Object svc = delegateList.get(serviceInterface);
 		if (svc == null) {
-			svc = ClassUtils.classInstance(serviceInterface.getName() + "Impl");
-			if (!(svc instanceof BaseService)) {
-				throw new SystemException(serviceInterface.getName() + "Impl"
-						+ " class should extend from BaseServiceImpl");
+			Class a;
+			try {
+				a = Class.forName(serviceInterface.getName() + "Impl");
+				svc=a.newInstance();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-
+//			if (!(svc instanceof BaseService)) {
+//				throw new SystemException(serviceInterface.getName() + "Impl"
+//						+ " class should extend from BaseServiceImpl");
+//			}
 			delegateList.put(serviceInterface, svc);
 		}
 
 		return svc;
 	}
 
-	private static synchronized Object getSynchronizedService(
-			Class serviceInterface, Class serviceImpl) {
-		Object svc = delegateList.get(serviceImpl);
-		if (svc == null) {
-			svc = ClassUtils.classInstance(serviceImpl);
-			if (!(svc instanceof BaseService)) {
-				throw new SystemException(serviceImpl.getName()
-						+ " class should extend from BaseServiceImpl");
-			}
-
-			delegateList.put(serviceImpl, svc);
-		}
-
-		return svc;
-	}
+//	private static synchronized Object getSynchronizedService(
+//			Class serviceInterface, Class serviceImpl) {
+//		Object svc = delegateList.get(serviceImpl);
+//		if (svc == null) {
+//			svc = ClassUtils.classInstance(serviceImpl);
+//			if (!(svc instanceof BaseService)) {
+//				throw new SystemException(serviceImpl.getName()
+//						+ " class should extend from BaseServiceImpl");
+//			}
+//
+//			delegateList.put(serviceImpl, svc);
+//		}
+//
+//		return svc;
+//	}
+	
+}
