@@ -36,7 +36,7 @@ public final class SmartProxy {
 						if (throwVal instanceof Exception) {
 							throw (Exception) throwVal;
 						}
-						throw new SystemException("System Fatal Exception", throwVal);
+//						throw new SystemException("System Fatal Exception", throwVal);
 					}
 				}
 			}

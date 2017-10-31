@@ -2,13 +2,13 @@ package com.demo.dao;
 
 import java.util.Map;
 
-import com.bdcc.waf.controller.business.action.BusinessAction;
-import com.bdcc.waf.event.ActionResult;
-import com.bdcc.waf.event.Event;
-import com.bdcc.waf.service.BaseService;
-import com.bdcc.waf.service.BusinessServiceFactory;
-import com.bdcc.waf.service.ServiceContextImpl;
-import com.bdcc.waf.utils.SmartProxy;
+//import com.bdcc.waf.controller.business.action.BusinessAction;
+//import com.bdcc.waf.event.ActionResult;
+//import com.bdcc.waf.event.Event;
+//import com.bdcc.waf.service.BaseService;
+//import com.bdcc.waf.service.BusinessServiceFactory;
+//import com.bdcc.waf.service.ServiceContextImpl;
+//import com.bdcc.waf.utils.SmartProxy;
 
 public class ServiceWrapper{
 
@@ -25,7 +25,7 @@ public class ServiceWrapper{
 			para.remove("waf.service.method");
 			para.remove("waf.service.parameter");
 			para.remove("waf.service.parameter.type");
-			((ServiceContextImpl) service.getContext()).setParameters(para);
+//			((ServiceContextImpl) service.getContext()).setParameters(para);
 		}
 
 		SmartProxy proxy = SmartProxy.getInstance();
