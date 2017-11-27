@@ -18,19 +18,7 @@ public class BaseDAO {
 	private static BaseDAO singleInstance = new BaseDAO();
 	protected Logger log = LoggerFactory.getLogger(this.getClass());
 	public static String sql_type = "mysql";
-	private SqlSyntaxAdapter sqlSyntax;
 
-	public void setSqlAdapter(SqlSyntaxAdapter sqlAdapter) {
-		this.sqlSyntax = sqlAdapter;
-	}
-
-	public SqlSyntaxAdapter getSqlAdapter() {
-		if (this.sqlSyntax == null) {
-			this.sqlSyntax = SqlSyntaxAdapterFactory.getInstance().getSqlSytaxAdapter();
-		}
-
-		return this.sqlSyntax;
-	}
 
 	public static BaseDAO getInstance() {
 		return singleInstance;
@@ -53,21 +41,34 @@ public class BaseDAO {
 //		this.log.enterMethod();
 		Serializable retu = null;
 		try {
-			this.getSession().insert(entity.getClass().getName()+"Mapper."+"insert", entity);
+			String nameSpaceId=entity.getClass().getName()+"Mapper."+"insert";
+			SqlSession session=	this.getSession();
+			retu=session.insert(nameSpaceId,entity);
+			
+//			Object threadId = ThreadLocalResourceManager.getThreadId();
+//			Connection e = ConnectionFactory.getConnection(threadId);
+//			e.commit();
+			
+			session.close();
 		} catch (Exception arg3) {
 //			DaoExceptionHandler.exceptionHandler(arg3);
 //			throw new SystemException("Create Fail.", arg3);
+			arg3.printStackTrace();
 		}
 //		this.log.exitMethod();
 		return retu;
 	}
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		BaseDAO a=new BaseDAO();
 		SmsMember b =new SmsMember();
 		b.setId(Long.valueOf("111"));
+		b.setUserId(Long.valueOf("1112222"));
 		a.create(b);
+		
+//		Connection con=	a.getConnection();
+//		System.out.println(con.getClientInfo().toString());
 	}
 	
 	
