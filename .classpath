@@ -24,6 +24,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/xingyiframe/src/trove.jar"/>
-	<classpathentry kind="src" path="/xingyiframe"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
