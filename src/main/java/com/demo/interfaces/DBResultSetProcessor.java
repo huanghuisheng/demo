@@ -1,4 +1,4 @@
-package com.demo.dao;
+package com.demo.interfaces;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

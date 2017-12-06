@@ -9,6 +9,11 @@ import java.util.Stack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.demo.interfaces.Closeable;
+import com.demo.interfaces.Rollbackable;
+import com.demo.util.FastThreadLocal;
+import com.demo.util.SystemException;
+
 //import com.bdcc.waf.common.Closeable;
 //import com.bdcc.waf.common.Rollbackable;
 //import com.bdcc.waf.exception.SystemException;
@@ -61,8 +66,8 @@ public final class ThreadLocalResourceManager {
 		}
 
 		if (((Map) map).containsKey(key)) {
-//			throw new SystemException("Already exist value  for key [" + key
-//					+ "] ");
+			throw new SystemException("Already exist value  for key [" + key
+					+ "] ");
 		} else {
 			resourceStack.push(value);
 			((Map) map).put(key, value);

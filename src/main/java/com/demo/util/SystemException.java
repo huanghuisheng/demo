@@ -1,6 +1,6 @@
-package com.demo.dao;
+package com.demo.util;
 
-//import com.bdcc.waf.exception.UnrecoverableException;
+
 
 public class SystemException extends UnrecoverableException {
 	private static final long serialVersionUID = -4369604296692379840L;

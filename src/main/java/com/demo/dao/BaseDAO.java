@@ -19,6 +19,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.demo.interfaces.DBResultSetProcessor;
+import com.demo.util.Pagin;
+import com.demo.util.StringUtils;
+import com.demo.util.SystemException;
+
 public class BaseDAO {
 	private static Map cloneTable = new HashMap();
 	private static BaseDAO singleInstance = new BaseDAO();
@@ -34,10 +39,6 @@ public class BaseDAO {
 		return ConnectionFactory.getConnection();
 	}
 
-	// protected Session getSession() {
-	// return HibernateFactory.getSession();
-	// }
-	
 	protected SqlSession getSession() {
 		return MybatisFactory.getSqlSession();
 	}
@@ -50,14 +51,11 @@ public class BaseDAO {
 			String nameSpaceId = entity.getClass().getName() + "Mapper." + "insert";
 			SqlSession session = this.getSession();
 			retu = session.insert(nameSpaceId, entity);
-
-			Object threadId = ThreadLocalResourceManager.getThreadId();
-			Connection e = ConnectionFactory.getConnection(threadId);
-			e.commit();
+//			Object threadId = ThreadLocalResourceManager.getThreadId();
+//			Connection e = ConnectionFactory.getConnection(threadId);
+//			e.commit();
 		} catch (Exception arg3) {
-			// DaoExceptionHandler.exceptionHandler(arg3);
-			// throw new SystemException("Create Fail.", arg3);
-			arg3.printStackTrace();
+			 throw new SystemException("Create Fail.", arg3);
 		}
 		// this.log.exitMethod();
 		return retu;
@@ -102,14 +100,7 @@ public class BaseDAO {
 		}
 		Object e1;
 		try {
-			// if (StringUtils.isNull(filterCondition)) {
-			// filterCondition = this.getFilterCondition();
-			// }
 
-			// sqlString = this.addFilterCondition(sqlString, filterCondition);
-			// if (!isAll) {
-			// sqlString = this.setMaxResult(sqlString);
-			// }
 			pstmt = this.getConnection().prepareStatement(sqlString, 1003, 1007);
 			if (this.log.isInfoEnabled()) {
 				this.log.info("sqlString");
@@ -218,6 +209,11 @@ public class BaseDAO {
 			a.create(b);
 		}
 
+		
+		
+		
+		
+		
 		// Connection con= a.getConnection();
 		// System.out.println(con.getClientInfo().toString());
 	}

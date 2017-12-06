@@ -120,13 +120,6 @@ public class DataSourceParser {
 					logger.error(e.getMessage(), e);
 				}
 			}
-			
-			
-			
-			
-			
-			
-			
 			return testDataSource(dataSourceName, dataSourceProperties.get("url"), (DataSource)obj);
 		} catch (ClassNotFoundException e) {
 			logger.error(e.getMessage(), e);

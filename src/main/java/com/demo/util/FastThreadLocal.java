@@ -1,4 +1,4 @@
-package com.demo.dao;
+package com.demo.util;
 
 import gnu.trove.THashMap;
 

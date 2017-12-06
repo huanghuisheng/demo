@@ -18,9 +18,11 @@ import java.sql.Struct;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.demo.interfaces.Closeable;
+import com.demo.interfaces.Rollbackable;
+import com.demo.util.SystemException;
 
 //import com.bdcc.waf.common.Closeable;
 //import com.bdcc.waf.common.Rollbackable;
@@ -56,8 +58,7 @@ public class WrappedConnection implements Connection, Closeable, Rollbackable {
 			} catch (Exception arg10) {
 				;
 			}
-
-//			throw new SystemException("Connection commit error", arg11);
+			throw new SystemException("Connection commit error", arg11);
 		} finally {
 			try {
 				this.closeReally();
@@ -75,7 +76,7 @@ public class WrappedConnection implements Connection, Closeable, Rollbackable {
 				this.rollback();
 			}
 		} catch (Exception arg8) {
-//			throw new SystemException("Connection Rollback error", arg8);
+			throw new SystemException("Connection Rollback error", arg8);
 		} finally {
 			try {
 				this.closeReally();

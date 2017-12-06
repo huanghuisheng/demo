@@ -1,4 +1,4 @@
-package com.demo.dao;
+package com.demo.util;
 
 public class StringUtils {
 	public static boolean[] digitalAndDotPool = new boolean[256];

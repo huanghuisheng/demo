@@ -1,4 +1,4 @@
-package com.demo.dao;
+package com.demo.util;
 
 //import com.achievo.waf.utils.SystemException;
 
@@ -32,13 +32,8 @@ public class ClassUtils {
 		try {
 			ClassLoader e = Thread.currentThread().getContextClassLoader();
 			if (e == null) {
-//				e = (class$com$achievo$waf$utils$ClassUtils == null
-//						? (class$com$achievo$waf$utils$ClassUtils = class$("com.achievo.waf.utils.ClassUtils"))
-//						: class$com$achievo$waf$utils$ClassUtils)
-//						.getClassLoader();
 				e=ClassUtils.class.getClassLoader();
 			}
-
 			Class classz = e.loadClass(p_className);
 			return classz;
 		} catch (ClassNotFoundException arg2) {
@@ -63,16 +58,11 @@ public class ClassUtils {
 					sb.append("_").append(parameterTypes[i].getName());
 				}
 			}
-
 			return sb.toString();
 		} else {
 			return "0";
 		}
 	}
-	
-	
-	
-	
 	
 	
 }
