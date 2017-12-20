@@ -30,6 +30,9 @@ public class MemberContractServiceImpl  implements MemberContractService{
 		
 		List<SmsMember>	 list = dao.select(sql.toString(), null, null, new BaseProcessor(SmsMember.class));
 		
+		System.out.println("数字为-------"+list.size());
+		
+		
 		for(SmsMember sms:list)
 		{
 			System.out.println(sms.getId());

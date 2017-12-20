@@ -1,0 +1,270 @@
+﻿<!-- $Id: config_dev.xml,v 1.99 2005/10/26 02:38:34 micm Exp $ -->
+<configuration>
+  <section name="framework">
+  	<!--<entry key="dbtype" value="Oracle" />-->
+	<entry key="dbtype" value="MySQL"/>
+	<!--entry key="dbtype" value="Oracle" /-->
+  	<entry key="max_results" value="800" />
+  	<entry key="need_filter_geog" value="Y" />
+  	<entry key="need_filter_user" value="Y" />
+  <!--
+  	For tomcat, jndi name need to be configured as below -->
+   <entry key="datasource" value="java:/comp/env/java:/MySQLDS" />
+     <!-- <entry key="datasource" value="MyOracleDS"/>weblogic-->
+    <entry key="isDebugMode" value="true" />
+    <entry key="BusinessController" value="javabean" />
+    <entry key="BusinessController2.class" value="com.achievo.waf.controller.business.PojoFacadeController" />
+	<entry key="BusinessController.class" value="com.bdcc.waf.controller.business.QuickPojoFacadeController" />
+    <!--entry key="TransactionManagerFactory" value="com.achievo.waf.resource.JBossTransactionManagerFactory" />
+    <entry key="datasource" value="jdbc/datasource" />
+    <entry key="BusinessController" value="ejb" />
+    <entry key="BusinessController.ejbType" value="local" />
+    <entry key="BusinessController.jndi" value="local:ejb/dcx/taco/businesscomponents/controller/SessionFacadeControllerLocalHome" />
+    <entry key="BusinessController.class" value="dcx.taco.businesscomponents.controller.SessionFacadeControllerLocalHome" />
+    <entry key="BusinessControllerNoTrans.jndi" value="local:ejb/dcx/taco/businesscomponents/controller/SessionFacadeControllerNoTransLocalHome" />
+    <entry key="BusinessControllerNoTrans.class" value="dcx.taco.businesscomponents.controller.SessionFacadeControllerLocalHome" /-->
+    <!--entry key="BusinessController.class" value="dcx.taco.waf.business.controller.BeanFacadeController" /-->
+  </section>
+
+  <section name="framework.business.action.injector2">
+    <entry key="com.achievo.waf.controller.web.action.WafInjector" value="" />
+  </section>
+
+  <section name="framework.business.action.injector">
+    <entry key="com.bdcc.waf.controller.web.action.WafInjector" value="" />
+  </section>
+
+<!-- chenhl -->
+  <section name="framework.serviceregistration.catch.resource">
+    <entry key="com.bdcc.serviceregistration.util.cache" value="cache"/>
+	<entry key="com.bdcc.serviceregistration.util.dao" value="dao"/>
+  </section>
+<!-- chenhl -->
+
+  <section name="framework.business.action.filter2">
+    <entry key="com.achievo.waf.controller.business.WafBusinessFilter" value="" />
+  </section>
+  <section name="framework.business.action.filter">
+    <entry key="com.bdcc.waf.controller.business.WafBusinessFilter" value="" />
+  </section>
+
+  <section name="framework.read.only.business.action">
+    <entry key="test.dcx.taco.business.actions.TestBusinessAction1" value="" />
+  </section>
+
+   <section name="framework.queue.limitedtask">
+    <entry key="className" value="dcx.taco.waf.common.queue.LimitedTaskQueue" />
+    <entry key="max" value="3" />
+  </section>
+
+  <section name="framework.log.subsystem">
+
+  </section>
+  <section name="framework.cache.test">
+  	<!--LRUHASHMAP,GENERICHASHMAP,SOFTHASHMAP-->
+  	<entry key="type" value="WEAKMAP" />
+	</section>
+  <section name="framework.cache_cluster">
+  	<entry key="test" value="MyTest" />
+	</section>
+	<!-- add by Feng Security's cache -->
+	  <section name="framework.cache.pageBusinessRelation">
+  	<!--LRUHASHMAP,GENERICHASHMAP,SOFTHASHMAP-->
+  	<entry key="type" value="GENERICHASHMAP" />
+	</section>
+	  <section name="framework.cache.businessResourceRelation">
+  	<!--LRUHASHMAP,GENERICHASHMAP,SOFTHASHMAP-->
+  	<entry key="type" value="GENERICHASHMAP" />
+	</section>
+	  <section name="framework.cache.functionActionMethodRelation">
+  	<!--LRUHASHMAP,GENERICHASHMAP,SOFTHASHMAP-->
+  	<entry key="type" value="GENERICHASHMAP" />
+	</section>
+	  <section name="framework.cache.actionMethodFunctionIdCollRelation">
+  	<!--LRUHASHMAP,GENERICHASHMAP,SOFTHASHMAP-->
+  	<entry key="type" value="GENERICHASHMAP" />
+	</section>
+	<!-- add by Feng -->
+
+<!-- add by Brad   DataDictionary cache -->
+
+	<section name="framework.cache.categoryCache">
+  	<!--LRUHASHMAP,GENERICHASHMAP,SOFTHASHMAP-->
+  	<entry key="type" value="GENERICHASHMAP" />
+	</section>
+
+	<section name="framework.cache.codeCache">
+  	<!--LRUHASHMAP,GENERICHASHMAP,SOFTHASHMAP-->
+  	<entry key="type" value="GENERICHASHMAP" />
+	</section>
+
+	<section name="framework.dict.exceptional.category">
+  	<entry key="ICPCCode" value="" />
+  	<entry key="native" value="" />
+  	<entry key="ICD10Code" value="" />
+	</section>
+
+	<!-- add by Brad  -->
+
+
+  <section name="framework.format.pattern2">
+    <entry key="date" value="com.achievo.waf.web.validation.SimpleDateFormat" />
+    <entry key="trim" value="com.achievo.waf.web.validation.StringTrimFormat" />
+    <entry key="number" value="com.achievo.waf.web.validation.SimpleNumberFormat" />
+    <entry key="currency" value="com.achievo.waf.web.validation.SimpleCurrencyFormat" />
+    <entry key="percent" value="com.bdcc.hoffice.hr.PercentFormat" />
+  </section>
+
+  <section name="framework.validator.pattern2">
+    <entry key="date" value="com.achievo.waf.web.validation.SimpleDateValidator" />
+    <entry key="required" value="com.achievo.waf.web.validation.RequiredValidator" />
+    <entry key="email" value="com.achievo.waf.web.validation.EmailValidator" />
+    <entry key="range" value="com.achievo.waf.web.validation.RangeValidator" />
+    <entry key="isNumber" value="com.achievo.waf.web.validation.IsNumberValidator" />
+    <entry key="isInt" value="com.achievo.waf.web.validation.IsIntValidator" />
+    <entry key="isAlphabet" value="com.achievo.waf.web.validation.IsAlphabetValidator" />
+    <entry key="maxlength" value="com.achievo.waf.web.validation.MaxlengthValidator" />
+  </section>
+
+  <section name="framework.tag.template2.formText">
+    <entry key="default" value="com.achievo.waf.web.taglib.template.SimpleTextTemplateImpl" />
+    <entry key="readonly" value="com.achievo.waf.web.taglib.template.ReadonlyTextTemplateImpl" />
+  </section>
+
+  <section name="framework.tag.template2.select">
+    <entry key="default" value="com.achievo.waf.web.taglib.template.SimpleSelectTemplateImpl" />
+  </section>
+  <section name="framework.tag.template2.dictionary">
+    <entry key="default" value="com.achievo.waf.web.taglib.template.DictionaryImpl" />
+  </section>
+  <section name="framework.tag.template2.sql">
+    <entry key="default" value="com.achievo.waf.web.taglib.template.SqlImpl" />
+  </section>
+  <section name="framework.sql.datasource2">
+    <entry key="province" value="select DICT_ID,CONTENT from data_dictionary where dict_type = 'province'" />
+  </section>
+
+
+   <section name="framework.format.pattern">
+    <entry key="date" value="com.bdcc.hoffice.common.waf.SimpleDateFormat" />
+    <entry key="trim" value="com.bdcc.waf.web.validation.StringTrimFormat" />
+    <entry key="number" value="com.bdcc.waf.web.validation.SimpleNumberFormat" />
+    <entry key="currency" value="com.bdcc.waf.web.validation.SimpleCurrencyFormat" />
+  </section>
+
+  <section name="framework.validator.pattern">
+    <entry key="date" value="com.bdcc.hoffice.common.waf.SimpleDateValidator" />
+    <entry key="required" value="com.bdcc.waf.web.validation.RequiredValidator" />
+    <entry key="email" value="com.bdcc.waf.web.validation.EmailValidator" />
+    <entry key="range" value="com.bdcc.waf.web.validation.RangeValidator" />
+    <entry key="isNumber" value="com.bdcc.waf.web.validation.IsNumberValidator" />
+    <entry key="isInt" value="com.bdcc.waf.web.validation.IsIntValidator" />
+    <entry key="isAlphabet" value="com.bdcc.waf.web.validation.IsAlphabetValidator" />
+    <entry key="maxlength" value="com.bdcc.waf.web.validation.MaxlengthValidator" />
+    <entry key="greater" value="com.bdcc.waf.web.validation.GreaterValidator" />
+  </section>
+
+  <section name="framework.tag.template.formText">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.SimpleTextTemplateImpl" />
+    <entry key="horizontal" value="com.bdcc.waf.web.taglib.template.SimpleTextHorizontalTemplateImpl" />
+    <entry key="readonly" value="com.bdcc.waf.web.taglib.template.ReadonlyTextTemplateImpl" />
+  </section>
+
+  <section name="framework.tag.template.select">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.SimpleSelectTemplateImpl" />
+  </section>
+
+  <section name="framework.tag.template.list">
+    <entry key="default_bdcc_bak" value="com.bdcc.hoffice.common.web.taglib.templete.BdccListTagTemplate" />
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.list.SimpleListTemplateImpl" />
+    <entry key="petstore" value="com.achievo.demo.petstore.web.taglib.template.list.PetstoreListTemplateImpl" />
+  </section>
+  <section name="framework.tag.template.list.tree">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.list.SimpleTreeListTemplateImpl" />
+  </section>
+  <section name="framework.tag.template.column.text">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.list.SimpleTextColumnTemplateImpl" />
+  </section>
+  <section name="framework.tag.template.column.selectbox">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.list.SimpleSelectboxColumnTemplateImpl" />
+  </section>
+  <section name="framework.tag.template.column.select">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.list.SimpleSelectColumnTemplateImpl" />
+  </section>
+  <section name="framework.tag.template.column.radio">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.list.SimpleSelectColumnTemplateImpl" />
+  </section>
+  <section name="framework.tag.template.column.checkbox">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.list.SimpleSelectColumnTemplateImpl" />
+  </section>
+  <section name="framework.tag.template.column.node">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.list.SimpleTreeColumnTemplateImpl" />
+  </section>
+  <section name="framework.tag.template.paging">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.list.SimplePagingTemplateImpl" />
+    <entry key="common" value="com.bdcc.waf.web.taglib.template.list.CommonPagingTemplateImpl" />
+    <entry key="petstore" value="com.achievo.demo.petstore.web.taglib.list.PetstorePagingTemplateImpl" />
+  </section>
+
+  <section name="framework.tag.template.dictionary">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.DictionaryImpl" />
+  </section>
+  <section name="framework.tag.template.sql">
+    <entry key="default" value="com.bdcc.waf.web.taglib.template.SqlImpl" />
+  </section>
+  <section name="framework.sql.datasource">
+    <entry key="province" value="select DICT_ID,CONTENT from data_dictionary where dict_type = 'province'" />
+    <entry key="nation" value="SELECT CO.CODE_ID, CO.CODE_VALUE FROM DICT_CODE CO, DICT_CATEGORY CA WHERE CO.PARENT_CA_ID=CA.CATEGORY_ID AND CA.DICT_NAME='nation'" />
+	<entry key="gzdcdcstreet" value="SELECT TRIM(DAT) DAT,DISPLAY FROM DDLB WHERE DMID='街道'"/>
+	<entry key="gzdcdcjwh" value="SELECT TRIM(DAT) DAT,DISPLAY FROM DDLB WHERE DMID='居委会/村'"/>
+  </section>
+
+  <section name="application">
+    <entry key="appid" value="119" />
+    <entry key="machineid" value="119" />
+    <entry key="enableDataFilter" value="Y" />
+    <entry key="lockmins" value="60" />
+    <entry key="encoding" value="UTF-8" />
+</section>
+<section name="framework.filesystem.paths">
+    <entry key="taglib.javascript" value="/hoffice/js" />
+  </section>
+
+  <section name="framework.encoding">
+    <entry key="system.encoding" value="UTF" />
+  </section>
+
+  <section name="logging">
+    <entry key="configFile" value="conf/log4j.properties" />
+  </section>
+
+  <section name="framework.auth2">
+    <entry key="page.element.controller" value="com.achievo.waf.web.auth.PageElementAuthImpl" />
+    <entry key="page.element.control.map" value="actionMethodResourceMap" />
+  </section>
+
+  <section name="list">
+    <entry key="sortable" value="false" />
+    <entry key="sortableOnePage" value="false" />
+  </section>
+
+   <section name="webreport">
+    <entry key="tablespace" value="hoffice_gz"/>
+    <entry key="update" value="Y" />
+  </section>
+  <section name="platformdata">
+    <entry key="indexconfig" value="/bdcc/hrperson.do?method=enter" />
+ </section>
+
+  <section name="bdcc.sys.init">
+    <entry key="startYear" value="2009" />
+ </section>
+
+  <section name="bdcc.sanitation.version">
+     <entry key="version" value="dongguan" />
+ </section>
+ <section name="education">
+     <entry key="ip" value="10.10.2.54" />
+     <entry key="port" value="8090"/>
+ </section>
+</configuration>

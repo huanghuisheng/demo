@@ -25,5 +25,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/xingyiframe/src/trove.jar"/>
 	<classpathentry kind="lib" path="/xingyiWeb/src/servletapi-2.3.jar" sourcepath="C:/Users/ADMINI~1/AppData/Local/Temp/decompiler/source/servlet-api-2.3-sources.jar"/>
+	<classpathentry kind="lib" path="/ConstantSetting/src/concert/jfig-1.5.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
