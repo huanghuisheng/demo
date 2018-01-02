@@ -22,6 +22,7 @@
         <tonetime.version>1.3.7</tonetime.version>
         <iCloudJms.version>1.01.001</iCloudJms.version>
         <iCloudCore.version>1.01.001</iCloudCore.version>
+        <basedir>/demo</basedir>
     </properties>
 
   <dependencies>
@@ -66,9 +67,28 @@
 <version>5.1.13</version>
 </dependency>
     
+      <dependency>
+        <groupId>com.hope.cloud</groupId>  <!--自定义-->
+        <artifactId>cloud</artifactId>    <!--自定义-->
+        <version>1.0</version> <!--自定义-->
+        <scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它-->
+        <systemPath>${basedir}/lib/trove.jar</systemPath> <!--项目根目录下的lib文件夹下-->
+    </dependency> 
     
+    <dependency>
+        <groupId>com.hope.cloud1</groupId>  <!--自定义-->
+        <artifactId>cloud1</artifactId>    <!--自定义-->
+        <version>1.0</version> <!--自定义-->
+        <scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它-->
+        <systemPath>${basedir}/lib/jfig-1.5.2.jar</systemPath> <!--项目根目录下的lib文件夹下-->
+    </dependency> 
     
-    
-    
+        <dependency>
+        <groupId>com.hope.cloud2</groupId>  <!--自定义-->
+        <artifactId>cloud2</artifactId>    <!--自定义-->
+        <version>1.0</version> <!--自定义-->
+        <scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它-->
+        <systemPath>${basedir}/lib/servlet-api.jar</systemPath> <!--项目根目录下的lib文件夹下-->
+    </dependency> 
   </dependencies>
 </project>
