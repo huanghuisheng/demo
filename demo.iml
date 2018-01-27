@@ -21,32 +21,8 @@
     <orderEntry type="library" name="Maven: commons-dbcp:commons-dbcp:1.4" level="project" />
     <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.5.4" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.13" level="project" />
-    <orderEntry type="module-library">
-      <library name="Maven: com.hope.cloud:cloud:1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/trove.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: com.hope.cloud1:cloud1:1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/jfig-1.5.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: com.hope.cloud2:cloud2:1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/servlet-api.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="Maven: trove:trove:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.jfig:jfig:1.5.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
   </component>
 </module>

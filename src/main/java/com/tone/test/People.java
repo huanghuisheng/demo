@@ -1,4 +1,4 @@
-package com.tone.dao;
+package com.tone.test;
 
 public class People {
     private Integer id;

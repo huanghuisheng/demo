@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Desktop/SSO-OpenSAML-master/client/client.iml" filepath="$USER_HOME$/Desktop/SSO-OpenSAML-master/client/client.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo.iml" filepath="$PROJECT_DIR$/demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaTest/javaTest.iml" filepath="$PROJECT_DIR$/javaTest/javaTest.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/SSO-OpenSAML-master/server/server.iml" filepath="$USER_HOME$/Desktop/SSO-OpenSAML-master/server/server.iml" />
     </modules>
   </component>
 </project>

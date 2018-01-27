@@ -4,6 +4,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$USER_HOME$/Desktop/SSO-OpenSAML-master/client/pom.xml" />
+        <option value="$USER_HOME$/Desktop/SSO-OpenSAML-master/server/pom.xml" />
       </list>
     </option>
   </component>
