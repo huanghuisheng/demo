@@ -226,22 +226,4 @@ public class BaseDAO <E> {
 		return this.select(sqlString, filterCondition, parameters, processor, true,null);
 	}
 
-	public static void main(String[] args) throws Exception {
-		BaseDAO a = new BaseDAO();
-		for (int i = 10000; i < 11000; i++) {
-			SmsMember b = new SmsMember();
-			b.setId(Long.valueOf(i));
-			b.setUserId(Long.valueOf(i));
-			a.create(b);
-		}
-
-		
-		
-		
-		
-		
-		// Connection con= a.getConnection();
-		// System.out.println(con.getClientInfo().toString());
-	}
-
 }

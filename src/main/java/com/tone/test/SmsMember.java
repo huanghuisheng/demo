@@ -1,4 +1,4 @@
-package com.tone.dao;
+package com.tone.test;
 
 import java.math.BigDecimal;
 import java.util.Date;

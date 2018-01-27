@@ -1,11 +1,7 @@
 package com.tone.test;
 
-import java.util.List;
-
 import com.tone.dao.BaseDAO;
-import com.tone.dao.SmsMember;
 import com.tone.dao.ThreadLocalResourceManager;
-import com.tone.util.BaseProcessor;
 
 public class ThreadDemo implements Runnable {
 	public BaseDAO dao;

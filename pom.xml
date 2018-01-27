@@ -1,17 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com</groupId>
-  <artifactId>demo</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <groupId>com</groupId>
+    <artifactId>demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <name>demo</name>
-  <url>http://maven.apache.org</url>
+    <name>demo</name>
+    <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.6.1</slf4j.version>
         <servlet.version>2.5</servlet.version>
@@ -25,70 +25,88 @@
         <basedir>/demo</basedir>
     </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-           
-                  <dependency>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-<!--         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency> -->
-		     <dependency>
-		    <groupId>commons-beanutils</groupId>
-		    <artifactId>commons-beanutils</artifactId>
-		    <version>1.9.2</version>
-		</dependency>
-                   <dependency>
-                    <groupId>org.mybatis</groupId>
-                    <artifactId>mybatis</artifactId>
-                    <version>3.2.8</version>
-                   </dependency>
-    
-    
-     <dependency>
-    <groupId>commons-dbcp</groupId>
-    <artifactId>commons-dbcp</artifactId>
-    <version>1.4</version>
-</dependency>
-    
-    <dependency>
-<groupId>mysql</groupId>
-<artifactId>mysql-connector-java</artifactId>
-<version>5.1.13</version>
-</dependency>
-    
-      <dependency>
-        <groupId>com.hope.cloud</groupId>  <!--自定义-->
-        <artifactId>cloud</artifactId>    <!--自定义-->
-        <version>1.0</version> <!--自定义-->
-        <scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它-->
-        <systemPath>${basedir}/lib/trove.jar</systemPath> <!--项目根目录下的lib文件夹下-->
-    </dependency> 
-    
-    <dependency>
-        <groupId>com.hope.cloud1</groupId>  <!--自定义-->
-        <artifactId>cloud1</artifactId>    <!--自定义-->
-        <version>1.0</version> <!--自定义-->
-        <scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它-->
-        <systemPath>${basedir}/lib/jfig-1.5.2.jar</systemPath> <!--项目根目录下的lib文件夹下-->
-    </dependency> 
-    
+        <!--         <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jul-to-slf4j</artifactId>
+                    <version>${slf4j.version}</version>
+                </dependency> -->
         <dependency>
-        <groupId>com.hope.cloud2</groupId>  <!--自定义-->
-        <artifactId>cloud2</artifactId>    <!--自定义-->
-        <version>1.0</version> <!--自定义-->
-        <scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它-->
-        <systemPath>${basedir}/lib/servlet-api.jar</systemPath> <!--项目根目录下的lib文件夹下-->
-    </dependency> 
-  </dependencies>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.2.8</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.13</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.hope.cloud</groupId>  &lt;!&ndash;自定义&ndash;&gt;-->
+            <!--<artifactId>cloud</artifactId>    &lt;!&ndash;自定义&ndash;&gt;-->
+            <!--<version>1.0</version> &lt;!&ndash;自定义&ndash;&gt;-->
+            <!--<scope>system</scope> &lt;!&ndash;system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它&ndash;&gt;-->
+            <!--<systemPath>${basedir}/lib/trove.jar</systemPath> &lt;!&ndash;项目根目录下的lib文件夹下&ndash;&gt;-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>net.sf.trove4j</groupId>-->
+            <!--<artifactId>trove4j</artifactId>-->
+            <!--<version>3.0.3</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>trove</groupId>
+            <artifactId>trove</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.hope.cloud1</groupId>  &lt;!&ndash;自定义&ndash;&gt;-->
+            <!--<artifactId>cloud1</artifactId>    &lt;!&ndash;自定义&ndash;&gt;-->
+            <!--<version>1.0</version> &lt;!&ndash;自定义&ndash;&gt;-->
+            <!--<scope>system</scope> &lt;!&ndash;system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它&ndash;&gt;-->
+            <!--<systemPath>${basedir}/lib/jfig-1.5.2.jar</systemPath> &lt;!&ndash;项目根目录下的lib文件夹下&ndash;&gt;-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>net.sf.jfig</groupId>
+            <artifactId>jfig</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.hope.cloud2</groupId>  &lt;!&ndash;自定义&ndash;&gt;-->
+            <!--<artifactId>cloud2</artifactId>    &lt;!&ndash;自定义&ndash;&gt;-->
+            <!--<version>1.0</version> &lt;!&ndash;自定义&ndash;&gt;-->
+            <!--<scope>system</scope> &lt;!&ndash;system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它&ndash;&gt;-->
+            <!--<systemPath>${basedir}/lib/servlet-api.jar</systemPath> &lt;!&ndash;项目根目录下的lib文件夹下&ndash;&gt;-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
