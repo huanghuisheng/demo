@@ -1,26 +1,21 @@
 package com.tone.dao;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
+import org.apache.commons.beanutils.BeanUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
-
-import org.apache.commons.beanutils.BeanUtils;
 //import org.apache.commons.beanutils.BeanUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-//import com.tonetime.commons.database.Configuration;
-//import com.tonetime.commons.database.DataSourceParser;
-//import com.tonetime.commons.database.DataSourceParser.HolderSingletonHolder;
 
 /**
  * 数据源构建器.通过配置构建数据源

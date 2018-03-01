@@ -1,17 +1,13 @@
 package com.tone.dao;
 
 import gnu.trove.THashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public final class ServiceHelper {
 	private static Logger log = LoggerFactory.getLogger(ServiceHelper.class);
@@ -64,7 +60,7 @@ public final class ServiceHelper {
 				ThreadLocalResourceManager.closeAllResource();
 
 			} catch (Exception arg7) {
-				arg7.printStackTrace();
+				log.error("invoke  is fail",arg7);
 				isRollback=true;
 			}
 			try {
@@ -72,7 +68,7 @@ public final class ServiceHelper {
 					ThreadLocalResourceManager.rollbackAllResource();
 				}
 			} catch (Exception arg7) {
-				arg7.printStackTrace();
+				log.error("rollbackAll  is fail",arg7);
 			}
 			return  result;	
 		}

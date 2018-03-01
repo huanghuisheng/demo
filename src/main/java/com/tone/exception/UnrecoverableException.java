@@ -1,12 +1,9 @@
-package com.tone.util;
+/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
+package com.tone.exception;
 
-import com.tone.interfaces.OriginalExceptionHolder;
-
-//import com.bdcc.waf.exception.ErrorObject;
-//import com.bdcc.waf.exception.ExceptionUtil;
-//import com.bdcc.waf.exception.OriginalExceptionHolder;
-
-public class UnrecoverableException extends RuntimeException implements OriginalExceptionHolder {
+public class UnrecoverableException extends RuntimeException
+		implements
+			OriginalExceptionHolder {
 	private static final long serialVersionUID = 7881003034798351398L;
 	public static final String LP = System.getProperty("line.separator");
 	protected String userFriendlyErrorMessage = null;
@@ -26,7 +23,8 @@ public class UnrecoverableException extends RuntimeException implements Original
 		super(messageKey);
 		this.userFriendlyErrorMessage = messageKey;
 		if (throwable instanceof OriginalExceptionHolder) {
-			this.originalThrowable = ((OriginalExceptionHolder) throwable).getOriginalThrowable();
+			this.originalThrowable = ((OriginalExceptionHolder) throwable)
+					.getOriginalThrowable();
 		} else {
 			this.originalThrowable = throwable;
 		}
@@ -39,12 +37,14 @@ public class UnrecoverableException extends RuntimeException implements Original
 		this.arguments = parameterList;
 	}
 
-	public UnrecoverableException(String messageKey, Object[] parameterList, Throwable throwable) {
+	public UnrecoverableException(String messageKey, Object[] parameterList,
+			Throwable throwable) {
 		super(messageKey);
 		this.userFriendlyErrorMessage = messageKey;
 		this.arguments = parameterList;
 		if (throwable instanceof OriginalExceptionHolder) {
-			this.originalThrowable = ((OriginalExceptionHolder) throwable).getOriginalThrowable();
+			this.originalThrowable = ((OriginalExceptionHolder) throwable)
+					.getOriginalThrowable();
 		} else {
 			this.originalThrowable = throwable;
 		}
@@ -52,13 +52,17 @@ public class UnrecoverableException extends RuntimeException implements Original
 	}
 
 	public Throwable getOriginalThrowable() {
-		return (Throwable) (this.originalThrowable != null ? (this.originalThrowable instanceof OriginalExceptionHolder ? this
-				.extractOriginalThrowable((OriginalExceptionHolder) this.originalThrowable) : this.originalThrowable) : this);
+		return (Throwable) (this.originalThrowable != null
+				? (this.originalThrowable instanceof OriginalExceptionHolder
+						? this.extractOriginalThrowable((OriginalExceptionHolder) this.originalThrowable)
+						: this.originalThrowable)
+				: this);
 	}
 
 	private Throwable extractOriginalThrowable(OriginalExceptionHolder exception) {
 		Throwable original;
-		for (original = exception.getOriginalThrowable(); original != exception; original = exception.getOriginalThrowable()) {
+		for (original = exception.getOriginalThrowable(); original != exception; original = exception
+				.getOriginalThrowable()) {
 			if (original == null) {
 				original = (Throwable) exception;
 				break;
@@ -91,8 +95,12 @@ public class UnrecoverableException extends RuntimeException implements Original
 	}
 
 	public String getOriginalStackTrace() {
-		return this.originalThrowable == null ? ExceptionUtil.getStackTrace(this) : (this.originalThrowable instanceof OriginalExceptionHolder ? ((OriginalExceptionHolder) this.originalThrowable)
-				.getOriginalStackTrace() : ExceptionUtil.getStackTrace(this.originalThrowable));
+		return this.originalThrowable == null
+				? ExceptionUtil.getStackTrace(this)
+				: (this.originalThrowable instanceof OriginalExceptionHolder
+						? ((OriginalExceptionHolder) this.originalThrowable)
+								.getOriginalStackTrace() : ExceptionUtil
+								.getStackTrace(this.originalThrowable));
 	}
 
 	public String getMessageId() {

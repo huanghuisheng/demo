@@ -1,6 +1,5 @@
-package com.tone.util;
-
-
+/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
+package com.tone.exception;
 
 public class SystemException extends UnrecoverableException {
 	private static final long serialVersionUID = -4369604296692379840L;

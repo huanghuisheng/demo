@@ -1,20 +1,21 @@
 package com.tone.dao;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.sql.Connection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
+import com.tone.exception.SystemException;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MybatisFactory {
 	private static Map sessionFactorys = new HashMap();
-
+	protected static Logger log = LoggerFactory.getLogger(MybatisFactory.class);
 	public static SqlSession getSqlSession() {
 		// TODO Auto-generated method stub
 		return getThreadSession("framework");
@@ -71,7 +72,8 @@ public class MybatisFactory {
 			// 创建会话工厂
 			sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (Exception arg7) {
-			arg7.printStackTrace();
+			log.error(arg7.getMessage());
+			throw new SystemException("could not load SqlMapConfig.xml",arg7);
 		}
 		return sessionFactory;
 	}

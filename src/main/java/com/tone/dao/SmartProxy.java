@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.tone.exception.SystemException;
 import com.tone.interfaces.ProxyStub;
 import com.tone.util.ClassUtils;
 
@@ -39,7 +40,7 @@ public final class SmartProxy {
 						if (throwVal instanceof Exception) {
 							throw (Exception) throwVal;
 						}
-//						throw new SystemException("System Fatal Exception", throwVal);
+						throw new SystemException("System Fatal Exception", throwVal);
 					}
 				}
 			}

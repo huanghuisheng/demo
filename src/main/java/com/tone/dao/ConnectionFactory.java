@@ -9,10 +9,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 import javax.sql.XADataSource;
 
-import org.omg.CORBA.SystemException;
-
 import com.tone.constant.ConfigFactory;
-
+import com.tone.exception.SystemException;
 
 
 public class ConnectionFactory {
@@ -82,6 +80,9 @@ public class ConnectionFactory {
 			}
 		} catch (SQLException arg3) {
 			arg3.printStackTrace();
+			throw new SystemException(
+					"Cannot create the connection by DataSource ("
+							+ jndiName + ")", arg3);
 		}
 		return connObj;		
 	}
@@ -109,9 +110,11 @@ public class ConnectionFactory {
 				}
 			} catch (SQLException arg3) {
 				arg3.printStackTrace();
+				throw new SystemException(
+						"Cannot create the connection by DataSource ("
+								+ jndiName + ")", arg3);
 			}
 		}
-		return conn;
 	}
 
 	public static Object getDataSource(String jndiName) {
@@ -122,12 +125,14 @@ public class ConnectionFactory {
 			if (ds == null) {
 				ds = getSynchronizedDataSource(jndiName);
 			}
+			return ds;
 		} catch (SystemException arg2) {
 			throw arg2;
 		} catch (Exception arg3) {
 			arg3.printStackTrace();
+			throw new SystemException("Don\'t found DataSource  name ("
+					+ jndiName + ")", arg3);
 		}
-		return ds;
 		// } else {
 		// throw new SystemException("JNDI name is required");
 		// }

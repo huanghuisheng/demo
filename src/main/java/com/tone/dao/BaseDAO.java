@@ -1,28 +1,18 @@
 package com.tone.dao;
 
-import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
+import com.tone.exception.SystemException;
+import com.tone.interfaces.DBResultSetProcessor;
+import com.tone.util.Pagin;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tone.interfaces.DBResultSetProcessor;
-import com.tone.util.Pagin;
-import com.tone.util.StringUtils;
-import com.tone.util.SystemException;
+import java.io.Serializable;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 public class BaseDAO <E> {
 	private static BaseDAO singleInstance = new BaseDAO();
@@ -99,7 +89,7 @@ public class BaseDAO <E> {
 			SqlSession session = this.getSession();
 			session.update(nameSpaceId, entity);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new SystemException("update Fail.", e);
 		}
 	}
 
@@ -109,7 +99,7 @@ public class BaseDAO <E> {
 			SqlSession session = this.getSession();
 			session.delete(nameSpaceId, entity);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new SystemException("delete Fail.", e);
 		}
 	}
 
@@ -127,7 +117,7 @@ public class BaseDAO <E> {
 			SqlSession session = this.getSession();
 			object=	session.selectOne(nameSpaceId,entity);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new SystemException("selectOne Fail.", e);
 		}
 		return object;
 	}
@@ -170,12 +160,12 @@ public class BaseDAO <E> {
 		} catch (Exception arg19) {
 			this.log.info(this.getClass().getName() + " select " + arg19.getMessage());
 			e1 = null;
+			throw new SystemException("select Fail.", arg19);
 		} finally {
 			try {
 				if (rs != null) {
 					rs.close();
 				}
-
 				if (pstmt != null) {
 					pstmt.close();
 				}
@@ -183,10 +173,10 @@ public class BaseDAO <E> {
 				if (this.log.isInfoEnabled()) {
 					this.log.info(this.getClass().getName() + " select " + arg18.getMessage());
 				}
+				throw new SystemException("select Fail.", arg18);
 			}
 
 		}
-		return (List) e1;
 	}
 
 	private void setParameters(PreparedStatement pstmt, Object[] parameters) throws SQLException {
