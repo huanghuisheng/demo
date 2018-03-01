@@ -3,10 +3,11 @@ package com.tone.constant;
 import java.util.Map;
 import java.util.Properties;
 
+import com.tone.exception.SystemException;
 import org.igfay.jfig.JFig;
 import org.igfay.jfig.JFigException;
 
-import com.tone.util.SystemException;
+
 
 public class JFigConfig implements Config {
 	private static final long serialVersionUID = 507247809361656182L;

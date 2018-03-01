@@ -1,46 +1,24 @@
 package com.tone.dao;
 
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.CallableStatement;
-import java.sql.Clob;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.NClob;
-import java.sql.PreparedStatement;
-import java.sql.SQLClientInfoException;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
-import java.sql.Savepoint;
-import java.sql.Statement;
-import java.sql.Struct;
+import com.tone.exception.SystemException;
+import com.tone.interfaces.Closeable;
+import com.tone.interfaces.Rollbackable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-import com.tone.exception.SystemException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import com.tone.interfaces.Closeable;
-import com.tone.interfaces.Rollbackable;
-
-//import com.bdcc.waf.common.Closeable;
-//import com.bdcc.waf.common.Rollbackable;
-//import com.bdcc.waf.db.WrappedConnection;
-//import com.bdcc.waf.db.WrappedPreparedStatement;
-//import com.bdcc.waf.db.WrappedStatement;
-//import com.bdcc.waf.exception.SystemException;
-//import com.bdcc.waf.logging.Logger;
-//import com.bdcc.waf.logging.LoggerFactory;
-
-public class WrappedConnection implements Connection, Closeable, Rollbackable {
-	protected Connection origConn;
+public class WrappedConnection implements java.sql.Connection, Closeable, Rollbackable {
+	protected java.sql.Connection origConn;
 	protected boolean isJta = false;
-	private static Logger log = LoggerFactory.getLogger(WrappedConnection.class);
+	private static Logger log = LoggerFactory
+			.getLogger(WrappedConnection.class);
 
-	public WrappedConnection(Connection conn) throws SQLException {
+	public WrappedConnection(java.sql.Connection conn) throws SQLException {
 		this.origConn = conn;
 	}
 
@@ -60,6 +38,7 @@ public class WrappedConnection implements Connection, Closeable, Rollbackable {
 			} catch (Exception arg10) {
 				;
 			}
+
 			throw new SystemException("Connection commit error", arg11);
 		} finally {
 			try {
@@ -92,11 +71,7 @@ public class WrappedConnection implements Connection, Closeable, Rollbackable {
 
 	public Statement createStatement() throws SQLException {
 		Object statement = this.origConn.createStatement();
-		if (log.isDebugEnabled()) {
-			WrappedStatement wrappedstatement = new WrappedStatement();
-			wrappedstatement.setStatement((Statement) statement);
-			statement = wrappedstatement;
-		}
+
 
 		return (Statement) statement;
 	}
@@ -203,31 +178,21 @@ public class WrappedConnection implements Connection, Closeable, Rollbackable {
 			throws SQLException {
 		Object statement = this.origConn.createStatement(resultSetType,
 				resultSetConcurrency);
-		if (log.isDebugEnabled()) {
-			WrappedStatement wrappedstatement = new WrappedStatement();
-			wrappedstatement.setStatement((Statement) statement);
-			statement = wrappedstatement;
-		}
+
 
 		return (Statement) statement;
 	}
 
 	public PreparedStatement prepareStatement(String sql, int resultSetType,
-			int resultSetConcurrency) throws SQLException {
+											  int resultSetConcurrency) throws SQLException {
 		Object statement = this.origConn.prepareStatement(sql, resultSetType,
 				resultSetConcurrency);
-		if (log.isDebugEnabled()) {
-			WrappedPreparedStatement wrappedstatement = new WrappedPreparedStatement();
-			wrappedstatement.setStatement((PreparedStatement) statement);
-			wrappedstatement.setSqlString(sql);
-			statement = wrappedstatement;
-		}
 
 		return (PreparedStatement) statement;
 	}
 
 	public CallableStatement prepareCall(String sql, int resultSetType,
-			int resultSetConcurrency) throws SQLException {
+										 int resultSetConcurrency) throws SQLException {
 		CallableStatement statement = this.origConn.prepareCall(sql,
 				resultSetType, resultSetConcurrency);
 		if (log.isDebugEnabled()) {
@@ -270,43 +235,33 @@ public class WrappedConnection implements Connection, Closeable, Rollbackable {
 	}
 
 	public Statement createStatement(int resultSetType,
-			int resultSetConcurrency, int resultSetHoldability)
+									 int resultSetConcurrency, int resultSetHoldability)
 			throws SQLException {
 		Object statement = this.origConn.createStatement(resultSetType,
 				resultSetConcurrency, resultSetHoldability);
-		if (log.isDebugEnabled()) {
-			WrappedStatement wrappedstatement = new WrappedStatement();
-			wrappedstatement.setStatement((Statement) statement);
-			statement = wrappedstatement;
-		}
+
 
 		return (Statement) statement;
 	}
 
 	public PreparedStatement prepareStatement(String sql, int resultSetType,
-			int resultSetConcurrency, int resultSetHoldability)
+											  int resultSetConcurrency, int resultSetHoldability)
 			throws SQLException {
 		Object statement = this.origConn.prepareStatement(sql, resultSetType,
 				resultSetConcurrency, resultSetHoldability);
-		if (log.isDebugEnabled()) {
-			WrappedPreparedStatement wrappedstatement = new WrappedPreparedStatement();
-			wrappedstatement.setStatement((PreparedStatement) statement);
-			wrappedstatement.setSqlString(sql);
-			statement = wrappedstatement;
-		}
+
 
 		return (PreparedStatement) statement;
 	}
 
 	public CallableStatement prepareCall(String sql, int resultSetType,
-			int resultSetConcurrency, int resultSetHoldability)
+										 int resultSetConcurrency, int resultSetHoldability)
 			throws SQLException {
 		CallableStatement statement = this.origConn.prepareCall(sql,
 				resultSetType, resultSetConcurrency, resultSetHoldability);
 		if (log.isDebugEnabled()) {
 			log.debug("[prepareCall]" + sql);
 		}
-
 		return statement;
 	}
 
@@ -314,127 +269,125 @@ public class WrappedConnection implements Connection, Closeable, Rollbackable {
 			throws SQLException {
 		Object statement = this.origConn.prepareStatement(sql,
 				autoGeneratedKeys);
-		if (log.isDebugEnabled()) {
-			WrappedPreparedStatement wrappedstatement = new WrappedPreparedStatement();
-			wrappedstatement.setStatement((PreparedStatement) statement);
-			wrappedstatement.setSqlString(sql);
-			statement = wrappedstatement;
-		}
-
 		return (PreparedStatement) statement;
 	}
 
 	public PreparedStatement prepareStatement(String sql, int[] columnIndexes)
 			throws SQLException {
 		Object statement = this.origConn.prepareStatement(sql, columnIndexes);
-		if (log.isDebugEnabled()) {
-			WrappedPreparedStatement wrappedstatement = new WrappedPreparedStatement();
-			wrappedstatement.setStatement((PreparedStatement) statement);
-			wrappedstatement.setSqlString(sql);
-			statement = wrappedstatement;
-		}
-
 		return (PreparedStatement) statement;
 	}
 
 	public PreparedStatement prepareStatement(String sql, String[] columnNames)
 			throws SQLException {
 		Object statement = this.origConn.prepareStatement(sql, columnNames);
-		if (log.isDebugEnabled()) {
-			WrappedPreparedStatement wrappedstatement = new WrappedPreparedStatement();
-			wrappedstatement.setStatement((PreparedStatement) statement);
-			wrappedstatement.setSqlString(sql);
-			statement = wrappedstatement;
-		}
 
 		return (PreparedStatement) statement;
 	}
 
-	public <T> T unwrap(Class<T> arg0) throws SQLException {
+	@Override
+	public <T> T unwrap(Class<T> iface) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public boolean isWrapperFor(Class<?> arg0) throws SQLException {
+	@Override
+	public boolean isWrapperFor(Class<?> iface) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	@Override
 	public Clob createClob() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public Blob createBlob() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public NClob createNClob() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public SQLXML createSQLXML() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public boolean isValid(int arg0) throws SQLException {
+	@Override
+	public boolean isValid(int timeout) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public void setClientInfo(String arg0, String arg1) throws SQLClientInfoException {
+	@Override
+	public void setClientInfo(String name, String value) throws SQLClientInfoException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void setClientInfo(Properties arg0) throws SQLClientInfoException {
+	@Override
+	public void setClientInfo(Properties properties) throws SQLClientInfoException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public String getClientInfo(String arg0) throws SQLException {
+	@Override
+	public String getClientInfo(String name) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public Properties getClientInfo() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Array createArrayOf(String arg0, Object[] arg1) throws SQLException {
+	@Override
+	public Array createArrayOf(String typeName, Object[] elements) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Struct createStruct(String arg0, Object[] arg1) throws SQLException {
+	@Override
+	public Struct createStruct(String typeName, Object[] attributes) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public void setSchema(String arg0) throws SQLException {
+	@Override
+	public void setSchema(String schema) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
 	public String getSchema() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public void abort(Executor arg0) throws SQLException {
+	@Override
+	public void abort(Executor executor) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void setNetworkTimeout(Executor arg0, int arg1) throws SQLException {
+	@Override
+	public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
 	public int getNetworkTimeout() throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;

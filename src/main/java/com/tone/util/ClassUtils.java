@@ -1,6 +1,7 @@
 package com.tone.util;
 
-//import com.achievo.waf.utils.SystemException;
+
+import com.tone.exception.SystemException;
 
 public class ClassUtils {
 	public static Object classInstance(String p_className) {

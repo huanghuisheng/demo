@@ -1,10 +1,12 @@
 package com.tone.constant;
 
+import com.tone.exception.SystemException;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tone.util.SystemException;
+
 
 public final class ConfigFactory implements Serializable, Initializable {
 	private static final long serialVersionUID = 1L;

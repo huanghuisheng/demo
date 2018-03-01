@@ -17,11 +17,11 @@ public class ConnectionFactory {
 	private static Map dataSourceList = new HashMap();
 	private static String dataSource;
 	
-	private static synchronized Object getSynchronizedDataSource(String jndiName) throws NamingException {
-		Object ds = dataSourceList.get(jndiName);
+	private static synchronized Object getSynchronizedDataSource(String dbMaster) throws NamingException {
+		Object ds = dataSourceList.get(dbMaster);
 		if (ds == null) {
-			ds = DataSourceBuilder.getInstance().getDataSource(jndiName);
-			dataSourceList.put(jndiName, ds);
+			ds = DataSourceBuilder.getInstance().getDataSource(dbMaster);
+			dataSourceList.put(dbMaster, ds);
 		}
 		return ds;
 	}
@@ -67,34 +67,33 @@ public class ConnectionFactory {
 	
 	
 
-	private static Connection wrappedConnection(Object threadId, String jndiName) {
-		WrappedConnection connObj = (WrappedConnection) ThreadLocalResourceManager.getResource(threadId, jndiName);
+	private static Connection wrappedConnection(Object threadId, String dbMaster) {
+		WrappedConnection connObj = (WrappedConnection) ThreadLocalResourceManager.getResource(threadId, dbMaster);
 		try {
 			if (connObj == null || connObj.isClosed()) {
-				ThreadLocalResourceManager.unbindResource(threadId, jndiName);
+				ThreadLocalResourceManager.unbindResource(threadId, dbMaster);
 				Connection e = null;
-				e = getInnerConnection(jndiName);
+				e = getInnerConnection(dbMaster);
 				connObj = new WrappedConnection(e);
-				connObj.setJta(false);
-				ThreadLocalResourceManager.bindResource(threadId, jndiName, connObj);
+				ThreadLocalResourceManager.bindResource(threadId, dbMaster, connObj);
 			}
 		} catch (SQLException arg3) {
 			arg3.printStackTrace();
 			throw new SystemException(
 					"Cannot create the connection by DataSource ("
-							+ jndiName + ")", arg3);
+							+ dbMaster + ")", arg3);
 		}
 		return connObj;		
 	}
 
-	private static Connection getInnerConnection(String jndiName) {
-		if (jndiName == null || jndiName.length() == 0) {
-			jndiName = getDataSourceFromConfig(null);
+	private static Connection getInnerConnection(String dbMaster) {
+		if (dbMaster == null || dbMaster.length() == 0) {
+			dbMaster = getDataSourceFromConfig(null);
 		}
 		Connection conn = null;
-		Object ds = getDataSource(jndiName);
+		Object ds = getDataSource(dbMaster);
 		if (ds == null) {
-			throw new IllegalArgumentException("Don\'t found DataSource JNDI name (" + jndiName + ")");
+			throw new IllegalArgumentException("Don\'t found DataSource  name (" + dbMaster + ")");
 		} else {
 			try {
 				if (ds instanceof DataSource) {
@@ -104,7 +103,7 @@ public class ConnectionFactory {
 				}
 				// conn=jdbc.getConnection();
 				if (conn == null) {
-					throw new IllegalArgumentException("Cannot create the connection by DataSource (" + jndiName + ")");
+					throw new IllegalArgumentException("Cannot create the connection by DataSource (" + dbMaster + ")");
 				} else {
 					return conn;
 				}
@@ -112,18 +111,17 @@ public class ConnectionFactory {
 				arg3.printStackTrace();
 				throw new SystemException(
 						"Cannot create the connection by DataSource ("
-								+ jndiName + ")", arg3);
+								+ dbMaster + ")", arg3);
 			}
 		}
 	}
 
-	public static Object getDataSource(String jndiName) {
-		// if (jndiName != null && jndiName.length() != 0) {
+	public static Object getDataSource(String dbMaster) {
 		Object ds = null;
 		try {
-			ds = dataSourceList.get(jndiName);
+			ds = dataSourceList.get(dbMaster);
 			if (ds == null) {
-				ds = getSynchronizedDataSource(jndiName);
+				ds = getSynchronizedDataSource(dbMaster);
 			}
 			return ds;
 		} catch (SystemException arg2) {
@@ -131,11 +129,8 @@ public class ConnectionFactory {
 		} catch (Exception arg3) {
 			arg3.printStackTrace();
 			throw new SystemException("Don\'t found DataSource  name ("
-					+ jndiName + ")", arg3);
+					+ dbMaster + ")", arg3);
 		}
-		// } else {
-		// throw new SystemException("JNDI name is required");
-		// }
 	}
 
 }

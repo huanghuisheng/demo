@@ -1,5 +1,6 @@
 package com.tone.dao;
 
+import com.tone.exception.SystemException;
 import gnu.trove.THashMap;
 
 import java.util.HashMap;
@@ -12,15 +13,7 @@ import org.slf4j.LoggerFactory;
 import com.tone.interfaces.Closeable;
 import com.tone.interfaces.Rollbackable;
 import com.tone.util.FastThreadLocal;
-import com.tone.util.SystemException;
 
-//import com.bdcc.waf.common.Closeable;
-//import com.bdcc.waf.common.Rollbackable;
-//import com.bdcc.waf.exception.SystemException;
-//import com.bdcc.waf.logging.Logger;
-//import com.bdcc.waf.logging.LoggerFactory;
-//import com.bdcc.waf.resource.FastThreadLocal;
-//import com.bdcc.waf.resource.ThreadLocalResourceManager;
 
 public final class ThreadLocalResourceManager {
 	private static Logger log = LoggerFactory.getLogger(ThreadLocalResourceManager.class);
@@ -213,15 +206,13 @@ public final class ThreadLocalResourceManager {
 					if (log.isDebugEnabled()) {
 						log.debug("[rollbackResource][" + threadId + "]" + obj);
 					}
-
 					if (!rollbackResource(obj)) {
 						isSuccess = false;
 					}
 				}
-
 				map.clear();
 				if (!isSuccess) {
-//					throw new SystemException("The transaction rollbacks fail");
+					throw new SystemException("The transaction rollbacks fail");
 				}
 			}
 		} else {
@@ -238,13 +229,11 @@ public final class ThreadLocalResourceManager {
 				if (resource instanceof Rollbackable) {
 					((Rollbackable) resource).transactionRollback();
 				}
-
 				return true;
 			} catch (Exception arg1) {
 				if (log.isErrorEnabled()) {
 					log.error("rollback fail.", arg1);
 				}
-
 				return false;
 			}
 		}
