@@ -1,5 +1,6 @@
 package com.tone.dao;
 
+import com.tone.constant.ConfigFactory;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,19 +61,13 @@ public class DaoFactory {
 		return null;
 	}
 
+
 	private static String getImplementClassName(String daoInterface) {
-		if ("com.bdcc.waf.dao.CommonDAO".equalsIgnoreCase(daoInterface)) {
-			return daoInterface + "Impl";
-		} else {
 			int implFlag = getWhatImpl();
 			String daoInterfaceName = getNameExcludeDao(daoInterface);
 			return 1521 == implFlag
-					? daoInterfaceName + "QracDAOImpl"
-					: ('썐' == implFlag
-							? daoInterfaceName + "DB2DAOImpl"
-							: (1433 == implFlag ? daoInterfaceName
-									+ "SQLDAOImpl" : daoInterfaceName + "Impl"));
-		}
+					? daoInterfaceName + "OracleDAOImpl"
+					: daoInterfaceName + "MySQLDAOImpl";
 	}
 
 	private static String getNameExcludeDao(String name) {
@@ -83,11 +78,8 @@ public class DaoFactory {
 	}
 
 	private static int getWhatImpl() {
-//		String dbType = ConfigFactory.getInstance().getConfig()
-//				.getString("framework", "dbtype");
-		String dbType="mysql";
-		return "Oracle".equalsIgnoreCase(dbType) ? 1521 : ("DB2"
-				.equalsIgnoreCase(dbType) ? '썐' : ("mssql"
-				.equalsIgnoreCase(dbType) ? 1433 : 1521));
+		String dbType = ConfigFactory.getInstance().getConfig()
+				.getString("framework", "dbtype");
+		return "Oracle".equalsIgnoreCase(dbType) ? 1521 :3306;
 	}
 }

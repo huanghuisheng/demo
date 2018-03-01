@@ -58,9 +58,9 @@ public final class ServiceHelper {
 			boolean isRollback = false;
 			try {			
 				Object service =ServiceFactory.getService(this.originalInterface);
-//				result=method.invoke(service, args);
-				SmartProxy proxy1 = SmartProxy.getInstance();
-				result = proxy1.dynamicInvoke(service, method.getName(), method.getParameterTypes(), args);
+				result=method.invoke(service, args);
+//				SmartProxy proxy1 = SmartProxy.getInstance();
+//				result = proxy1.dynamicInvoke(service, method.getName(), method.getParameterTypes(), args);
 				ThreadLocalResourceManager.closeAllResource();
 
 			} catch (Exception arg7) {

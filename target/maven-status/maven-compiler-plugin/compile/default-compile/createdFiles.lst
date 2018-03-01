@@ -5,6 +5,7 @@ com\tone\util\SystemException.class
 com\tone\dao\WrappedPreparedStatement.class
 com\tone\constant\ConfigLocator.class
 com\tone\dao\DataSourceCluster.class
+com\tone\test\SmsMember.class
 com\tone\dao\WrappedConnection.class
 com\tone\util\BaseProcessor.class
 com\tone\dao\ThreadLocalResourceManager.class
@@ -16,7 +17,6 @@ com\tone\interfaces\Rollbackable.class
 com\tone\interfaces\OriginalExceptionHolder.class
 com\tone\util\FastThreadLocal.class
 com\tone\dao\DataSourceParser$HolderSingletonHolder.class
-com\tone\dao\People.class
 com\tone\test\User.class
 com\tone\util\ClassUtils.class
 com\tone\dao\DataSourceBuilder.class
@@ -28,7 +28,6 @@ com\tone\dao\DataSourceBuilder$HolderSingletonHolder.class
 com\tone\util\StringUtils.class
 com\tone\dao\Configuration.class
 com\tone\dao\ServiceHelper.class
-com\tone\dao\SmsMember.class
 com\tone\test\TestService.class
 com\tone\test\ThreadDemo.class
 com\tone\util\ExceptionUtil.class
@@ -44,6 +43,7 @@ com\tone\test\MemberContractWebAction.class
 com\tone\util\ClassLoaderUtils$AggregateIterator.class
 com\tone\util\ClassLoaderUtils.class
 com\tone\constant\SynchronizedLock.class
+com\tone\test\People.class
 com\tone\dao\DataSourceParser.class
 com\tone\dao\WrappedStatement.class
 com\tone\constant\Initializable.class

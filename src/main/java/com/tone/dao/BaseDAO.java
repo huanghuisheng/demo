@@ -78,12 +78,14 @@ public class BaseDAO <E> {
 				retu = session.insert(nameSpaceId, entity);	
 			}
 		} catch (Exception arg3) {
-			 throw new SystemException("Create Fail.", arg3);
+			 throw new SystemException("createByBatch Fail.", arg3);
 		}
 		// this.log.exitMethod();
 		return retu;
 	}
-	
+
+
+
 	
 	public void update(Object entity) {
 		try {
@@ -110,6 +112,26 @@ public class BaseDAO <E> {
 			e.printStackTrace();
 		}
 	}
+
+	//查询
+	public Object selectOne(Object entity) {
+		Object object=null;
+		try {
+			if (entity == null) {
+				if (this.log.isDebugEnabled()) {
+					this.log.debug("Object is empty during updating !");
+				}
+				return object;
+			}
+			String nameSpaceId = entity.getClass().getName() + "Mapper." + "selectByPrimaryKey";
+			SqlSession session = this.getSession();
+			object=	session.selectOne(nameSpaceId,entity);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return object;
+	}
+
 
 	public List select(String sqlString, String filterCondition, Object[] parameters, DBResultSetProcessor processor) {
 		return this.select(sqlString, filterCondition, parameters, processor, false,null);

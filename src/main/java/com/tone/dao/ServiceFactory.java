@@ -10,7 +10,7 @@ import com.tone.util.ClassUtils;
 public class ServiceFactory {
 	private static Map delegateList = new THashMap(100);
 	private static final String JAVABEAN_SUFFIX = "Impl";
-
+	private static final String JAVAPACKAGE_SUFFIX = ".impl.";
 	public static Object getService(Class serviceInterface) {
 		if (serviceInterface == null) {
 			return null;
@@ -30,7 +30,9 @@ public class ServiceFactory {
 			try {
 //				a = Class.forName(serviceInterface.getName() + "Impl");
 //				svc = a.newInstance();
-				svc=ClassUtils.classInstance(serviceInterface.getName()+JAVABEAN_SUFFIX);
+				String serviceUrl = serviceInterface.getPackage().getName() + JAVAPACKAGE_SUFFIX +
+						serviceInterface.getSimpleName() + JAVABEAN_SUFFIX;
+				svc = ClassUtils.classInstance(serviceUrl);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
