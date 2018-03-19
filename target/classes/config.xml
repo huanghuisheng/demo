@@ -1,0 +1,69 @@
+﻿<!-- $Id: config_dev.xml,v 1.99 2005/10/26 02:38:34 micm Exp $ -->
+<configuration>
+  <section name="framework">
+  	<!--<entry key="dbtype" value="Oracle" />-->
+	<entry key="dbtype" value="MySQL"/>
+	<!--entry key="dbtype" value="Oracle" /-->
+  	<entry key="max_results" value="800" />
+  	<entry key="need_filter_geog" value="Y" />
+  	<entry key="need_filter_user" value="Y" />
+  <!--
+  	For tomcat, jndi name need to be configured as below -->
+   <entry key="datasource" value="java:/comp/env/java:/MySQLDS" />
+     <!-- <entry key="datasource" value="MyOracleDS"/>weblogic-->
+    <entry key="isDebugMode" value="true" />
+    <entry key="BusinessController" value="javabean" />
+    <entry key="BusinessController2.class" value="com.achievo.waf.controller.business.PojoFacadeController" />
+	<entry key="BusinessController.class" value="com.bdcc.waf.controller.business.QuickPojoFacadeController" />
+    <!--entry key="TransactionManagerFactory" value="com.achievo.waf.resource.JBossTransactionManagerFactory" />
+    <entry key="datasource" value="jdbc/datasource" />
+    <entry key="BusinessController" value="ejb" />
+    <entry key="BusinessController.ejbType" value="local" />
+    <entry key="BusinessController.jndi" value="local:ejb/dcx/taco/businesscomponents/controller/SessionFacadeControllerLocalHome" />
+    <entry key="BusinessController.class" value="dcx.taco.businesscomponents.controller.SessionFacadeControllerLocalHome" />
+    <entry key="BusinessControllerNoTrans.jndi" value="local:ejb/dcx/taco/businesscomponents/controller/SessionFacadeControllerNoTransLocalHome" />
+    <entry key="BusinessControllerNoTrans.class" value="dcx.taco.businesscomponents.controller.SessionFacadeControllerLocalHome" /-->
+    <!--entry key="BusinessController.class" value="dcx.taco.waf.business.controller.BeanFacadeController" /-->
+  </section>
+
+  <section name="dsList">
+    <entry key="getMaster" value="dbMaster" />
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</configuration>
