@@ -143,13 +143,9 @@ public class BaseDAO <E> {
 		Object e1;
 		try {
 			pstmt = this.getConnection(dbMaster).prepareStatement(sqlString, 1003, 1007);
-			if (this.log.isInfoEnabled()) {
-				this.log.info("sqlString");
-			}
-
+			this.log.info("sqlString:"+sqlString);
 			this.setParameters(pstmt, parameters);
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				records.add(((DBResultSetProcessor) processor).processResultSetRow(rs));
 			}
@@ -157,11 +153,10 @@ public class BaseDAO <E> {
 			if (this.log.isInfoEnabled()) {
 				this.log.info(records.size() + " records returned.");
 			}
-
 			ArrayList e = records;
 			return e;
 		} catch (Exception arg19) {
-			this.log.info(this.getClass().getName() + " select " + arg19.getMessage());
+			this.log.info(this.getClass().getName() + " select error msg:  " + arg19.getMessage());
 			e1 = null;
 			throw new SystemException("select Fail.", arg19);
 		} finally {
@@ -174,7 +169,7 @@ public class BaseDAO <E> {
 				}
 			} catch (Exception arg18) {
 				if (this.log.isInfoEnabled()) {
-					this.log.info(this.getClass().getName() + " select " + arg18.getMessage());
+					this.log.info(this.getClass().getName() + " select error msg:  " + arg18.getMessage());
 				}
 				throw new SystemException("select Fail.", arg18);
 			}
@@ -185,9 +180,9 @@ public class BaseDAO <E> {
 	private void setParameters(PreparedStatement pstmt, Object[] parameters) throws SQLException {
 		if (parameters != null) {
 			for (int i = 0; i < parameters.length; ++i) {
-				if (this.log.isInfoEnabled()) {
+//				if (this.log.isInfoEnabled()) {
 					this.log.info("parameter[" + i + "]=" + parameters[i]);
-				}
+//				}
 
 				if (parameters[i] != null && !"".equals(parameters[i])) {
 					if (parameters[i] instanceof Date) {

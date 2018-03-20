@@ -19,7 +19,6 @@ public class ServiceFactory {
 			if (svc == null) {
 				svc = getSynchronizedService(serviceInterface);
 			}
-
 			return svc;
 		}
 	}

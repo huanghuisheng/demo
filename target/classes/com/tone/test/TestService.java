@@ -11,13 +11,15 @@ public class TestService {
 //		service1.addMemberContract();
 //		service.selectMemberContract();
 		System.out.println("----------------------开始-------------------------");
-		service.addMemberContract();
+		service.selectMemberContract();
+		service.selectMemberContract();
 		System.out.println("----------------------开始-------------------------");
 //		service.selectMemberContract();
-		
-		
-		
-		
+
 	}
+
+
+
+
 
 }
