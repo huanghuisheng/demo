@@ -24,7 +24,7 @@ public class MybatisFactory {
 	@SuppressWarnings("unused")
 	private static SqlSession getThreadSession(String p_sessionName) {
 		Object threadId = ThreadLocalResourceManager.getThreadId();
-		SqlSession connObj = (SqlSession) ThreadLocalResourceManager.getResource(threadId, "Mybatis" + p_sessionName);
+		SqlSessionWrapper3  connObj = (SqlSessionWrapper3) ThreadLocalResourceManager.getResource(threadId, "Mybatis" + p_sessionName);
 
 		if (connObj == null) {
 			ThreadLocalResourceManager.unbindResource(threadId, "Mybatis" + p_sessionName);
@@ -33,11 +33,10 @@ public class MybatisFactory {
 			}
 			SqlSessionFactory sqlSessionFactory = getSessionFactory(p_sessionName);
 			Connection e = ConnectionFactory.getConnection(threadId);
-			connObj = sqlSessionFactory.openSession(e);
-
+			SqlSession session = sqlSessionFactory.openSession(e);
 			SqlSessionWrapper3 sqlSessionWrapper3 = new SqlSessionWrapper3();
-			sqlSessionWrapper3.setOriginalSession(connObj);
-
+			sqlSessionWrapper3.setOriginalSession(session);
+			connObj=sqlSessionWrapper3;
 			ThreadLocalResourceManager.bindResource(threadId, "Mybatis" + p_sessionName, sqlSessionWrapper3);
 		}
 		return connObj;
@@ -76,7 +75,7 @@ public class MybatisFactory {
 			// 创建会话工厂
 			sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (Exception arg7) {
-			log.error(arg7.getMessage());
+			log.error("could not load SqlMapConfig.xml",arg7);
 			throw new SystemException("could not load SqlMapConfig.xml",arg7);
 		}
 		return sessionFactory;

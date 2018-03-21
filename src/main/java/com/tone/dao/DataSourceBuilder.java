@@ -13,7 +13,7 @@ public class DataSourceBuilder {
     private static final String DATA_SOURCE_CONFIG = "db.properties";
 
     private DataSourceCluster dataSourceCluster = null;
-    private DataSourceParser builder=null;
+    private DataSourceParser builder = null;
 
     private DataSourceBuilder() {
         buildDataSources();
@@ -22,11 +22,10 @@ public class DataSourceBuilder {
     private void buildDataSources() {
         Configuration configure = new Configuration(DATA_SOURCE_CONFIG);
         //创建数据源
-         builder = DataSourceParser.builder(configure);
+        builder = DataSourceParser.builder(configure);
     }
 
     private static class HolderSingletonHolder {
-
         static DataSourceBuilder instance = new DataSourceBuilder();
     }
 
@@ -37,19 +36,17 @@ public class DataSourceBuilder {
     public DataSourceCluster getDataSourceCluster() {
         return dataSourceCluster;
     }
-    
-    
+
+
     public DataSource getDataSource(String dsname) {
-    	if(builder==null)
-    	{
-    		 Configuration configure = new Configuration(DATA_SOURCE_CONFIG);
-    	     builder = DataSourceParser.builder(configure);
-    	}
-    	DataSource ds=builder.getDataSource(dsname);
-    	if(ds==null)
-    	{
-    		ds = builder.getDataSource();
-    	}
-    	return ds;	
+        if (builder == null) {
+            Configuration configure = new Configuration(DATA_SOURCE_CONFIG);
+            builder = DataSourceParser.builder(configure);
+        }
+        DataSource ds = builder.getDataSource(dsname);
+        if (ds == null) {
+            ds = builder.getDataSource();
+        }
+        return ds;
     }
 }

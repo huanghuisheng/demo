@@ -14,9 +14,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-//import org.apache.commons.beanutils.BeanUtils;
-
-
 /**
  * 数据源构建器.通过配置构建数据源
  * 
@@ -164,14 +161,14 @@ public class DataSourceParser {
 		return null;
 	}
 
-	public static void main(String[] args) {
-		String dataSource = "dbMaster";
-		String dbMaster = "dbMasterdriverClassName";
-		String key = dbMaster.substring(dataSource.length());
-		System.out.println(key);
-	}
+//	public static void main(String[] args) {
+//		String dataSource = "dbMaster";
+//		String dbMaster = "dbMasterdriverClassName";
+//		String key = dbMaster.substring(dataSource.length());
+//		System.out.println(key);
+//	}
 
-	////////////////////////////////////////////////////////////
+
 	private static class HolderSingletonHolder {
 		static DataSourceParser instance = new DataSourceParser();
 	}
